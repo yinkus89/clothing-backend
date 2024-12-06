@@ -8,11 +8,12 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react"  // Add this line for JSX support
   },
   "include": [
-    "src/**/*.ts", // Keep including all files inside src
-    "src/prisma/**/*.ts" // Explicitly include all files inside prisma
+    "src/**/*.ts",  // Keep including all files inside src
+    "src/prisma/**/*.ts"  // Explicitly include all files inside prisma
   ],
   "exclude": ["node_modules", "dist"]
 }
