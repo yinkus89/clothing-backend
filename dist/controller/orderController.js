@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getOrderById = exports.createOrder = exports.getOrders = void 0;
-const clients_1 = __importDefault(require("../../prisma/clients"));
+const clients_1 = __importDefault(require("../prisma/clients"));
 // Get all orders
 const getOrders = async (req, res) => {
     const orders = await clients_1.default.order.findMany({
