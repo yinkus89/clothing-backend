@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
-import prisma from "../prisma/clients"; // Correct import
+import prisma from "../../prisma/clients"; // Correct import
 
 // Register a new user
 export const register = async (req: Request, res: Response) => {
