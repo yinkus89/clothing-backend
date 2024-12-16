@@ -21,8 +21,17 @@ if (!process.env.JWT_SECRET) {
 const app = express();
 
 // Middleware
-app.use(cors());
 app.use(express.json());
+
+// Allow requests only from your development frontend
+const allowedOrigins = ['http://localhost:3000'];
+
+app.use(
+  cors({
+    origin: allowedOrigins, // Only allow requests from localhost:3000
+    credentials: true, // Enable this if you're using cookies or authentication headers
+  })
+);
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -40,7 +49,8 @@ app.post('/api/auth/register', async (req: Request, res: Response) => {
 
   // Validate input
   if (!email || !username || !password) {
-    return res.status(400).json({ message: 'All fields are required' });
+    res.status(400).json({ message: 'All fields are required' });
+    return;
   }
 
   try {
@@ -52,7 +62,8 @@ app.post('/api/auth/register', async (req: Request, res: Response) => {
     });
 
     if (existingUser) {
-      return res.status(400).json({ message: 'Email already in use' });
+      res.status(400).json({ message: 'Email already in use' });
+      return;
     }
 
     // Create new user in the database
@@ -72,6 +83,17 @@ app.post('/api/auth/register', async (req: Request, res: Response) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Server error, please try again later' });
+  }
+});
+
+// GET route for fetching products
+app.get('/api/products', async (req: Request, res: Response) => {
+  try {
+    const products = await prisma.product.findMany(); // Adjust according to your Prisma schema
+    res.json(products);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to fetch products' });
   }
 });
 
@@ -97,8 +119,9 @@ process.on('SIGTERM', async () => {
   await prisma.$disconnect();
   console.log('Prisma client disconnected');
 });
-// Export app and port
-const port = process.env.PORT || 5000;
-export { app, port };
 
-export default app;
+// Start the server
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});

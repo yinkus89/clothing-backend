@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-// Example of querying a model
+// Example of querying a model (optional for testing)
 async function main() {
   const users = await prisma.user.findMany();
   console.log(users);
@@ -10,8 +10,11 @@ async function main() {
 
 main()
   .catch((e) => {
-    throw e
+    throw e;
   })
   .finally(async () => {
-    await prisma.$disconnect()
-  })
+    await prisma.$disconnect();
+  });
+
+// Export the prisma instance for use in other files
+export { prisma };

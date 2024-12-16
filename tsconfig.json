@@ -1,24 +1,23 @@
 {
   "compilerOptions": {
-    "target": "ES2020",                     // Sets the ECMAScript target version
-    "module": "commonjs",                    // Use commonjs module resolution
-    "noEmit": true,                          // Don't emit JS files
-    "moduleResolution": "node",              // Resolve modules like Node.js
-    "outDir": "./dist",                      // Output directory for compiled files (when emit is enabled)
-    "rootDir": "./src",                      // Root directory for source files
-    "strict": true,                          // Enables strict mode (highly recommended)
-    "esModuleInterop": true,                 // Enables compatibility with CommonJS modules
-    "skipLibCheck": true,                    // Skip type checking of declaration files
+    "target": "ES2020", // Sets the ECMAScript target version
+    "module": "commonjs", // Use commonjs module resolution
+    "noEmit": true, // Don't emit JS files
+    "moduleResolution": "node", // Resolve modules like Node.js
+    "outDir": "./dist", // Output directory for compiled files (when emit is enabled)
+    "rootDir": "./", // Root directory for source files
+    "strict": true, // Enables strict mode (highly recommended)
+    "esModuleInterop": true, // Enables compatibility with CommonJS modules
+    "skipLibCheck": true, // Skip type checking of declaration files
     "forceConsistentCasingInFileNames": true, // Ensures consistent file naming
-    "jsx": "react"                           // Enables JSX support for React
+    "jsx": "react" // Enables JSX support for React
   },
   "include": [
-    "src/**/*.ts",      // Include all TS files under the src directory
-    "prisma/**/*.ts"    // Explicitly include all TS files under the prisma directory
+    "src/**/*.ts", // Include all TS files under the src directory
+    "prisma/**/*.ts" // Explicitly include all TS files under the prisma directory
   ],
   "exclude": [
-    "node_modules",     // Exclude node_modules folder
-    "dist"              // Exclude the dist folder (where emitted files will be placed)
+    "node_modules", // Exclude node_modules folder
+    "dist" // Exclude the dist folder (where emitted files will be placed)
   ]
 }
-
